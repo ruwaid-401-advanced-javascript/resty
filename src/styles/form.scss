@@ -1,0 +1,40 @@
+main{
+  #main-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    padding: 5px;
+
+  #url-div{
+    margin: 10px;
+  }
+
+   #buttons{
+    padding: 5px;
+    button{
+      padding: 5px;
+      margin: 2px;
+      cursor: pointer;
+      }
+    }
+}
+  #content{
+    border: solid rgb(153, 161, 153);
+    width: 99%;
+    height: 200px;
+    margin: 2px 0;
+    display: flex;
+    // align-items: center;
+    // justify-content: center;
+    #history{
+      border: solid greenyellow;
+      width: 30%
+    }
+  }
+}
+
+.aqua{
+  background-color: aqua;
+}
