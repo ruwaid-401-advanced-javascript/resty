@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/ruwaid-401-advanced-javascript/resty/issues"
   },
-  "homepage": ".",
+  "homepage": "https://ruwaid-401-advanced-javascript.github.io/resty/",
   "dependencies": {
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
