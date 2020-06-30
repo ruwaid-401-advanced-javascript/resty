@@ -22,14 +22,14 @@ describe('<App/>', () => {
     expect(app.find('span').exists()).toBeTruthy();
   });
 
-  it('renders correctly', ()=> {
-      const tree = renderer.create(<Form />).toJSON();
-      expect(tree).toMatchSnapshot();
+  it('renders correctly', () => {
+    const tree = renderer.create(<Form />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
-  it('renders correctly', ()=> {
+  it('renders correctly', () => {
     const tree = renderer.create(<Header />).toJSON();
     expect(tree).toMatchSnapshot();
-});
+  });
 
 });
