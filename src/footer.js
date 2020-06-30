@@ -4,7 +4,7 @@ import './styles/footer.scss'
 
 class Footer extends React.Component {
   render() {
-    return <footer>&copy;5555 Ruwaid</footer>;
+    return <footer>&copy;2021 Ruwaid</footer>;
   }
 }
 
