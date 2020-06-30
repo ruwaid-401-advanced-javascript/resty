@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles/form.scss'
-import Header from './header';
 
 class Form extends React.Component {
     constructor(props) {
