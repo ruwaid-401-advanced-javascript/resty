@@ -48,17 +48,6 @@ exports[`<App/> renders correctly 1`] = `
       </button>
     </div>
   </div>
-  <div
-    id="content"
-  >
-    <div
-      id="history"
-    />
-    <span>
-       
-      initial State
-    </span>
-  </div>
 </main>
 `;
 
@@ -68,4 +57,20 @@ exports[`<App/> renders correctly 2`] = `
     RESTy
   </h1>
 </header>
+`;
+
+exports[`<App/> renders correctly 3`] = `
+<div
+  id="content"
+>
+  <div
+    id="history"
+  />
+  <div>
+    "Headers":
+    <pre />
+    "Response":
+    <pre />
+  </div>
+</div>
 `;
