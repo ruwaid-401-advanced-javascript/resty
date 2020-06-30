@@ -6,7 +6,7 @@ import Form from '../form';
 import Header from '../header';
 import Footer from '../footer'
 
-describe('<Thing/>', () => {
+describe('<App/>', () => {
   it('is alive at application start', () => {
     let app = shallow(<Header />);
     expect(app.find('h1').exists()).toBeTruthy();
