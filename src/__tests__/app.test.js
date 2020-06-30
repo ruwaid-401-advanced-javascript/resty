@@ -32,10 +32,4 @@ describe('<App/>', () => {
     expect(tree).toMatchSnapshot();
 });
 
-it('renders correctly', ()=> {
-  const tree = renderer.create(<Footer />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-
 });
