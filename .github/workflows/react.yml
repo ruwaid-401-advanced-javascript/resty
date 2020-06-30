@@ -16,6 +16,6 @@ jobs:
     - name: Deploy to GH Pages
       run: |
         git config --global user.name "${{ secrets.USERNAME }}"
-        git remote set-url origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/${{ https://github.com/ruwaid-401-advanced-javascript/resty }}.git
+        git remote set-url origin https://${{ secrets.PERSONAL_TOKEN }}@github.com/ruwaid-401-advanced-javascript/resty.git
         npm install
         npm run deploy
