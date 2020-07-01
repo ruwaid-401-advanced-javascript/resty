@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import Form from '../form';
 import Header from '../header';
 import Footer from '../footer';
-import Results from '../results';
 
 describe('<App/>', () => {
   it('is alive at application start', () => {
@@ -27,15 +26,4 @@ describe('<App/>', () => {
     const tree = renderer.create(<Form />).toJSON();
     expect(tree).toMatchSnapshot();
   });
-
-  it('renders correctly', () => {
-    const tree = renderer.create(<Header />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders correctly', () => {
-    const tree = renderer.create(<Results />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
 });
