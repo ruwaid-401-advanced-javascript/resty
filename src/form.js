@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import './styles/form.scss'
 
 class Form extends React.Component {
@@ -6,63 +8,123 @@ class Form extends React.Component {
         super(props);
         this.state = {
             words: 'initial State',
-            all: []
+            options: {},
+            headersArr: [],
+            methodArr: [],
+            bodyArr: [],
+            urlArr: [],
+            metodeUrlObj: {
+                'GET': [],
+                'POST': [],
+                'PUT': [],
+                'DELETE': [],
+            },
         };
         this.url = '';
         this.method = 'GET';
+
     }
 
     handleClick = async e => {
-        e.preventDefault();
+        this.props.toggleLoading();
+
         this.url = document.getElementById('url').value;
-        let words = `${this.method} ${this.url}`;
-        let idx = this.state.all.length;
-        this.state.all.push(<div key={idx}>{words}</div>);
-      
-        let raw = await fetch(`${this.url}`);   
-        let data = await raw.json();
-        let all = this.state.all;
-        let headers = raw.headers.get('content-type');
-        this.props.handler(data, all, headers);
+        let words = `${this.method}:${this.url}`;
+
+
+
+        fetch(`${this.url}`, this.state.options).then(async (raw) => {
+            let data = await raw.json();
+            let all = this.props.all;
+            let headers = raw.headers.get('content-type');
+            this.props.all.push({ words });
+
+            if (!this.state.metodeUrlObj[this.method].includes(this.url)) {
+                this.state.headersArr.push(headers);
+                this.state.methodArr.push(this.method);
+                this.state.bodyArr.push(data);
+                this.state.urlArr.push(this.url);
+                this.state.metodeUrlObj[`${this.method}`].push(this.url);
+            }
+
+
+
+            localStorage.setItem('headers-state', JSON.stringify(this.state.headersArr));
+            localStorage.setItem('method-state', JSON.stringify(this.state.methodArr));
+            localStorage.setItem('body-state', JSON.stringify(this.state.bodyArr));
+            localStorage.setItem('URL-state', JSON.stringify(this.state.urlArr));
+            localStorage.setItem('Method-URL-state', JSON.stringify(this.state.metodeUrlObj));
+
+            this.props.handler(data, all, headers);
+            this.props.show(true)
+            // no need for settimeout just to see the loader because loader is coooool 
+            setTimeout(() => {
+                this.props.toggleLoading();
+
+            }, 1000);
+
+        }).catch((e) => {
+            this.props.handler({
+                msg1: 'Error Error Error',
+                msg2: 'maybe you do not have access',
+                msg3: 'maybe your request is wrooong',
+            }, this.props.all, null);
+
+            this.props.toggleLoading();
+        });
     }
 
     get = e => {
-        e.preventDefault();
         this.method = 'GET'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
+        let options = { method: 'GET' }
+        this.setState({ options })
     }
 
     post = e => {
-        e.preventDefault();
         this.method = 'POST'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
-        // let raw = fetch('https://swapi.dev/api/people', {
-        //     method: 'GET', // or 'PUT'
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(data),
-        // })
+        let data = {};
+        let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+        this.setState({ options })
     }
 
     put = e => {
-        e.preventDefault();
         this.method = 'PUT'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
+        let data = {};
+        let options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+        this.setState({ options })
     }
 
     delete = e => {
         this.method = 'DELETE'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
+        let options = {
+            method: 'DELETE',
+        }
+        this.setState({ options })
     }
 
     render() {
         return (
-            <main>
+            <div id='form'>
                 <div id='main-header'>
                     <div id='url-div'>
                         <label for='url'>URL:</label>
@@ -71,22 +133,13 @@ class Form extends React.Component {
                     </div>
 
                     <div id='buttons'>
-                        <button class='aqua' onClick={this.get}>GET</button>
-                        <button onClick={this.post}>POST</button>
-                        <button onClick={this.put}>UPDATE</button>
-                        <button onClick={this.delete}>DELETE</button>
+                        <button id='GET' class='aqua' onClick={this.get}>GET</button>
+                        <button id='POST' onClick={this.post}>POST</button>
+                        <button id='PUT' onClick={this.put}>PUT</button>
+                        <button id='DELETE' onClick={this.delete}>DELETE</button>
                     </div>
                 </div>
-
-
-                {/* <div id='content'>
-                  <div id='history'>
-                      {this.state.all}
-                  </div>
-                  <span> {this.state.words}</span>
-                  
-              </div> */}
-            </main>
+            </div>
         )
     }
 }
