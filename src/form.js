@@ -91,7 +91,10 @@ class Form extends React.Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+
             },
+            mode: 'cors',
             body: JSON.stringify(data),
         }
         this.setState({ options })
@@ -106,7 +109,9 @@ class Form extends React.Component {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
+            mode: 'cors',
             body: JSON.stringify(data),
         }
         this.setState({ options })
@@ -118,6 +123,10 @@ class Form extends React.Component {
         e.target.setAttribute('class', 'aqua');
         let options = {
             method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         }
         this.setState({ options })
     }
