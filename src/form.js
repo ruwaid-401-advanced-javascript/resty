@@ -19,6 +19,12 @@ class Form extends React.Component {
                 'PUT': [],
                 'DELETE': [],
             },
+            metodeUrlObjID: {
+                'GET': [],
+                'POST': [],
+                'PUT': [],
+                'DELETE': [],
+            },
         };
         this.url = '';
         this.method = 'GET';
@@ -29,7 +35,7 @@ class Form extends React.Component {
         this.props.toggleLoading();
 
         this.url = document.getElementById('url').value;
-        let words = `${this.method}:${this.url}`;
+        let words = `${this.method}!${this.url}`;
 
 
 
@@ -43,8 +49,10 @@ class Form extends React.Component {
                 this.state.headersArr.push(headers);
                 this.state.methodArr.push(this.method);
                 this.state.bodyArr.push(data);
+                let idx = this.state.urlArr.length;
                 this.state.urlArr.push(this.url);
-                this.state.metodeUrlObj[`${this.method}`].push(this.url);
+                this.state.metodeUrlObj[`${this.method}`].push(`${this.url}`);
+                this.state.metodeUrlObjID[`${this.method}`].push(`${idx}`);
             }
 
 
@@ -54,6 +62,7 @@ class Form extends React.Component {
             localStorage.setItem('body-state', JSON.stringify(this.state.bodyArr));
             localStorage.setItem('URL-state', JSON.stringify(this.state.urlArr));
             localStorage.setItem('Method-URL-state', JSON.stringify(this.state.metodeUrlObj));
+            localStorage.setItem('Method-URL-ID-state', JSON.stringify(this.state.metodeUrlObjID));
 
             this.props.handler(data, all, headers);
             this.props.show(true)
@@ -130,8 +139,24 @@ class Form extends React.Component {
         }
         this.setState({ options })
     }
+    componentDidMount() {
+        setTimeout(() => {
+            console.log('iiiiiiiiiiiiiiiii');
+            
+            if (this.props.id === '') {
+                console.log('pppppppppppppppp');
+    
+            } else {
+                console.log('qqqqqqqqqqqqqqqqqqqq');
+    
+            } 
+        }, 1000);
+
+    }
+
 
     render() {
+
         return (
             <div id='form'>
                 <div id='main-header'>

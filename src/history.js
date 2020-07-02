@@ -20,13 +20,18 @@ class History extends React.Component {
   }
 
   getFormLocalStorage = e => {
-    let idx = e.target.id;
+    let content = e.target.textContent;
+    let methodFromButton = content.split('!')[0];
+    let urlFromButton = content.split('!')[1];
+
+    let metodeUrlObjFromLocal = JSON.parse(localStorage.getItem('Method-URL-state'));
+    let metodeUrlObjIDFromLocal = JSON.parse(localStorage.getItem('Method-URL-ID-state'));
+
+    let x = metodeUrlObjFromLocal[methodFromButton].indexOf(urlFromButton)
+    let idx = metodeUrlObjIDFromLocal[methodFromButton][x]
 
     let headersFromLocal = JSON.parse(localStorage.getItem('headers-state'))[idx];
-    // let methodFromLocal = JSON.parse(localStorage.getItem('method-state'))[idx];
     let bodyFromLocal = JSON.parse(localStorage.getItem('body-state'))[idx];
-    // let URLFromLocal = JSON.parse(localStorage.getItem('URL-state'))[idx];
-    // let metodeUrlObjFromLocal = JSON.parse(localStorage.getItem('Method-URL-state'));
     this.setState({ results: bodyFromLocal, headers: headersFromLocal })
   }
 
@@ -46,7 +51,7 @@ class History extends React.Component {
                 >
                   {e.words}
                 </button>
-                {<Link to="/" id={indx} onClick={this.uu} >run</Link>}
+                {<Link to="/" id={indx} onClick={this.uu} >RE-Run</Link>}
               </div>
             )
           })}

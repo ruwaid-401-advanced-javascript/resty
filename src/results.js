@@ -4,14 +4,21 @@ import './styles/results.scss'
 class Results extends React.Component {
 
   getFormLocalStorage = e => {
-    let idx = e.target.id;
-    // console.log(e.target.textContent);
+    let content = e.target.textContent;
+    let methodFromButton = content.split('!')[0];
+    let urlFromButton = content.split('!')[1];
+
+    let metodeUrlObjFromLocal = JSON.parse(localStorage.getItem('Method-URL-state'));
+    let metodeUrlObjIDFromLocal = JSON.parse(localStorage.getItem('Method-URL-ID-state'));
+
+    let x = metodeUrlObjFromLocal[methodFromButton].indexOf(urlFromButton)
+    let idx = metodeUrlObjIDFromLocal[methodFromButton][x]
+
 
     let headersFromLocal = JSON.parse(localStorage.getItem('headers-state'))[idx];
     let methodFromLocal = JSON.parse(localStorage.getItem('method-state'))[idx];
     let bodyFromLocal = JSON.parse(localStorage.getItem('body-state'))[idx];
     let URLFromLocal = JSON.parse(localStorage.getItem('URL-state'))[idx];
-    // let metodeUrlObjFromLocal = JSON.parse(localStorage.getItem('Method-URL-state'));
 
     document.getElementById('url').value = URLFromLocal;
     document.getElementById(`${methodFromLocal}`).click();
