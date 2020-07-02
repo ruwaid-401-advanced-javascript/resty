@@ -19,6 +19,12 @@
         cursor: pointer;
       }
     }
+    #textarea {
+      display: block;
+      textarea {
+        display: block;
+      }
+    }
   }
 }
 

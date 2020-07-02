@@ -25,6 +25,9 @@ class Form extends React.Component {
                 'PUT': [],
                 'DELETE': [],
             },
+            data: {},
+            headerValue: '',
+            headerType: ''
         };
         this.url = '';
         this.method = 'GET';
@@ -43,7 +46,12 @@ class Form extends React.Component {
         fetch(`${this.url}`, this.state.options).then(async (raw) => {
             let data = await raw.json();
             let all = this.props.all;
-            let headers = raw.headers.get('content-type');
+            
+            // let headers = raw.headers.get('content-type');
+            let headers = {};
+            for (let [key, value] of raw.headers) {
+              headers[key] = value;
+            }
 
             if (!this.state.metodeUrlObj[this.method].includes(this.url)) {
                 this.state.headersArr.push(headers);
@@ -87,7 +95,13 @@ class Form extends React.Component {
         this.method = 'GET'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
-        let options = { method: 'GET' }
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${this.state.headertype} ${this.state.headerValue}`
+            },
+        }
         this.setState({ options })
     }
 
@@ -95,16 +109,15 @@ class Form extends React.Component {
         this.method = 'POST'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
-        let data = {};
         let options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `${this.state.headertype} ${this.state.headerValue}`
             },
             mode: 'cors',
-            body: JSON.stringify(data),
+            body: JSON.stringify(this.state.data),
         }
         this.setState({ options })
     }
@@ -113,15 +126,16 @@ class Form extends React.Component {
         this.method = 'PUT'
         document.getElementsByClassName('aqua')[0].removeAttribute('class');
         e.target.setAttribute('class', 'aqua');
-        let data = {};
         let options = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `${this.state.headertype} ${this.state.headerValue}`
+
             },
             mode: 'cors',
-            body: JSON.stringify(data),
+            body: JSON.stringify(this.state.data),
         }
         this.setState({ options })
     }
@@ -135,25 +149,23 @@ class Form extends React.Component {
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `${this.state.headertype} ${this.state.headerValue}`
+
             },
         }
         this.setState({ options })
     }
-    componentDidMount() {
-        setTimeout(() => {
-            console.log('iiiiiiiiiiiiiiiii');
-            
-            if (this.props.id === '') {
-                console.log('pppppppppppppppp');
-    
-            } else {
-                console.log('qqqqqqqqqqqqqqqqqqqq');
-    
-            } 
-        }, 1000);
-
+    handleBody = e => {
+        this.setState({ data: e.target.value });
     }
 
+    handleHeader = e => {
+        this.setState({ headerValue: e.target.value })
+    }
+
+    handleHeaderType = e => {
+        this.setState({ headertype: e.target.value })
+    }
 
     render() {
 
@@ -164,6 +176,24 @@ class Form extends React.Component {
                         <label for='url'>URL:</label>
                         <input id='url'></input>
                         <button onClick={this.handleClick}>GO!</button>
+
+                        <div id='header'>
+                            <label > Header</label>
+                            <br></br>
+                            <label for="Basic">Basic</label>
+                            <input checked type="radio" id="Basic" name="auth" value="Basic" onChange={this.handleHeaderType}></input>
+                            <label for="Bearer">Bearer</label>
+                            <input type="radio" id="Bearer" name="auth" value="Bearer" onChange={this.handleHeaderType}></input>
+                            <br></br>
+                            <input id="headerValue" onChange={this.handleHeader}></input>
+                        </div>
+
+
+                        <label id='textarea'>
+                            Body
+                        <textarea rows="4" cols="50" onChange={this.handleBody} ></textarea>
+                        </label>
+
                     </div>
 
                     <div id='buttons'>
