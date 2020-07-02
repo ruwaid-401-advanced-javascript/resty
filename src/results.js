@@ -12,21 +12,31 @@ class Results extends React.Component {
     let metodeUrlObjIDFromLocal = JSON.parse(localStorage.getItem('Method-URL-ID-state'));
 
     let x = metodeUrlObjFromLocal[methodFromButton].indexOf(urlFromButton)
-    let idx = metodeUrlObjIDFromLocal[methodFromButton][x]
+    if (x === -1) {
+      this.props.handler({
+        msg1: 'Error Error Error',
+        msg2: 'maybe you do not have access',
+        msg3: 'maybe your request is wrooong',
+      }, this.props.all, null);
+    } else {
+
+      let idx = metodeUrlObjIDFromLocal[methodFromButton][x]
 
 
-    let headersFromLocal = JSON.parse(localStorage.getItem('headers-state'))[idx];
-    let methodFromLocal = JSON.parse(localStorage.getItem('method-state'))[idx];
-    let bodyFromLocal = JSON.parse(localStorage.getItem('body-state'))[idx];
-    let URLFromLocal = JSON.parse(localStorage.getItem('URL-state'))[idx];
+      let headersFromLocal = JSON.parse(localStorage.getItem('headers-state'))[idx];
+      let methodFromLocal = JSON.parse(localStorage.getItem('method-state'))[idx];
+      let bodyFromLocal = JSON.parse(localStorage.getItem('body-state'))[idx];
+      let URLFromLocal = JSON.parse(localStorage.getItem('URL-state'))[idx];
 
-    document.getElementById('url').value = URLFromLocal;
-    document.getElementById(`${methodFromLocal}`).click();
+      document.getElementById('url').value = URLFromLocal;
+      document.getElementById(`${methodFromLocal}`).click();
 
-    // let lowerCaseMethod = methodFromLocal.toLowerCase();
-    // this[`${lowerCaseMethod}`]();
+      // let lowerCaseMethod = methodFromLocal.toLowerCase();
+      // this[`${lowerCaseMethod}`]();
 
-    this.props.handler(bodyFromLocal, this.props.all, headersFromLocal);
+      this.props.handler(bodyFromLocal, this.props.all, headersFromLocal);
+
+    }
   }
 
   render() {

@@ -36,6 +36,7 @@ class Form extends React.Component {
 
         this.url = document.getElementById('url').value;
         let words = `${this.method}!${this.url}`;
+        this.props.all.push({ words });
 
 
 
@@ -43,7 +44,6 @@ class Form extends React.Component {
             let data = await raw.json();
             let all = this.props.all;
             let headers = raw.headers.get('content-type');
-            this.props.all.push({ words });
 
             if (!this.state.metodeUrlObj[this.method].includes(this.url)) {
                 this.state.headersArr.push(headers);
