@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/results.scss'
+import '../styles/results.scss'
 
 class Results extends React.Component {
 
@@ -39,9 +39,28 @@ class Results extends React.Component {
     }
   }
 
+  getData = e =>{
+    if (this.props.id !== '') {
+      const rr = setInterval(() => {
+        let x = document.getElementById(`${this.props.id}`);
+        x.click();
+        this.props.fill('')
+        clearInterval(rr);
+      }, 500);
+
+
+    }
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
   render() {
+
     return (
       <>
+      <span>{this.props.id}</span>
         <div className={`loading-${this.props.loading}`}>
           <h1>
             <span>L</span>

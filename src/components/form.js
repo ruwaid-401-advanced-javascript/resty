@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import './styles/form.scss'
+import '../styles/form.scss'
 
 class Form extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class Form extends React.Component {
         fetch(`${this.url}`, this.state.options).then(async (raw) => {
             let data = await raw.json();
             let all = this.props.all;
-            
+
             // let headers = raw.headers.get('content-type');
             let headers = {};
             for (let [key, value] of raw.headers) {
@@ -168,7 +168,6 @@ class Form extends React.Component {
     }
 
     render() {
-
         return (
             <div id='form'>
                 <div id='main-header'>

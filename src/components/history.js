@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/results.scss'
+import '../styles/results.scss'
 
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,6 @@ class History extends React.Component {
     this.state = {
       results: {},
       headers: {},
-
     }
   }
 
@@ -51,7 +50,7 @@ class History extends React.Component {
                 >
                   {e.words}
                 </button>
-                {<Link to="/" id={indx} onClick={this.uu} >RE-Run</Link>}
+                {<Link to="/" id={indx} onClick={this.uu} key={indx-indx}>RE-Run</Link>}
               </div>
             )
           })}
