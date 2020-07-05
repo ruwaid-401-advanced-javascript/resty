@@ -1,5 +1,5 @@
-main{
-  #main-header{
+#form {
+  #main-header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,22 +7,27 @@ main{
     margin: 10px;
     padding: 5px;
 
-  #url-div{
-    margin: 10px;
-  }
+    #url-div {
+      margin: 10px;
+    }
 
-   #buttons{
-    padding: 5px;
-    button{
+    #buttons {
       padding: 5px;
-      margin: 2px;
-      cursor: pointer;
+      button {
+        padding: 5px;
+        margin: 2px;
+        cursor: pointer;
       }
     }
-}
+    #textarea {
+      display: block;
+      textarea {
+        display: block;
+      }
+    }
+  }
 }
 
-
-.aqua{
+.aqua {
   background-color: rgb(28, 119, 119);
 }

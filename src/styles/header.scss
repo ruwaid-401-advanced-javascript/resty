@@ -1,11 +1,12 @@
-header{
-  background-color: rgb(65, 63, 63);
+$header-color: rgb(65, 63, 63);
+
+header {
+  background-color: $header-color;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  h1{
+
+  h1 {
     color: white;
   }
-
 }
