@@ -1,6 +1,11 @@
-const Footer = () => {
+import React from 'react';
+import './styles/footer.scss'
 
-  return <footer>&copy;2020 Ruwaid</footer>;}
 
+class Footer extends React.Component {
+  render() {
+    return <footer>&copy;2021 Ruwaid</footer>;
+  }
+}
 
 export default Footer;

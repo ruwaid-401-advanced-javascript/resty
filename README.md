@@ -1,4 +1,4 @@
-# LAB - Class 26
+# LAB - Class 27
 
 ## Project:  Component Based UI
 
@@ -6,9 +6,9 @@
 
 ### Links and Resources
 
-- [submission PR](https://github.com/ruwaid-401-advanced-javascript/resty/pull/1)
-- [Github actions](https://github.com/ruwaid-401-advanced-javascript/resty/pull/1/checks)
-
+- [submission PR](https://github.com/ruwaid-401-advanced-javascript/resty/pull/2)
+- [Github actions](https://github.com/ruwaid-401-advanced-javascript/resty/pull/2/checks)
+- [live URL](https://ruwaid-401-advanced-javascript.github.io/resty/)
 
 
 ## Modules

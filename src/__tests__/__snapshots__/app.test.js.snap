@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App/> renders correctly 1`] = `
+<main>
+  <div
+    id="main-header"
+  >
+    <div
+      id="url-div"
+    >
+      <label
+        for="url"
+      >
+        URL:
+      </label>
+      <input
+        id="url"
+      />
+      <button
+        onClick={[Function]}
+      >
+        GO!
+      </button>
+    </div>
+    <div
+      id="buttons"
+    >
+      <button
+        class="aqua"
+        onClick={[Function]}
+      >
+        GET
+      </button>
+      <button
+        onClick={[Function]}
+      >
+        POST
+      </button>
+      <button
+        onClick={[Function]}
+      >
+        UPDATE
+      </button>
+      <button
+        onClick={[Function]}
+      >
+        DELETE
+      </button>
+    </div>
+  </div>
+  <div
+    id="content"
+  >
+    <div
+      id="history"
+    />
+    <span>
+       
+      initial State
+    </span>
+  </div>
+</main>
+`;
+
+exports[`<App/> renders correctly 2`] = `
+<header>
+  <h1>
+    RESTy
+  </h1>
+</header>
+`;
