@@ -6,8 +6,8 @@
 
 ### Links and Resources
 
-- [submission PR](https://github.com/ruwaid-401-advanced-javascript/resty/pull/2)
-- [Github actions](https://github.com/ruwaid-401-advanced-javascript/resty/pull/2/checks)
+- [submission PR](https://github.com/ruwaid-401-advanced-javascript/resty/pull/3)
+- [Github actions](https://github.com/ruwaid-401-advanced-javascript/resty/pull/3/checks)
 - [live URL](https://ruwaid-401-advanced-javascript.github.io/resty/)
 
 
